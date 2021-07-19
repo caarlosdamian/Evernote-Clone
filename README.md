@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Evernote Clone 
+work in progress
+![alt text](https://logos-marcas.com/wp-content/uploads/2021/03/Evernote-Logotipo-2018-presente.jpg)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

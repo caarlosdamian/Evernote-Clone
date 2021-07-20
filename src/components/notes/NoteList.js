@@ -1,5 +1,6 @@
 import React from 'react'
 import Note from './Note'
+import '../../styles/noteList.css'
 const NoteList = ({notes}) => {
     console.log(notes)
     return (

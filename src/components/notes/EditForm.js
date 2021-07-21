@@ -1,18 +1,23 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import useInput from "../../hooks/useInput";
-import "../../styles/form.css";
-import { addNote } from "../../store/actions/noteAction";
-import { useDispatch } from "react-redux";
-const Form = () => {
-  const [title, bindTitle, resetTitle] = useInput();
-  const [content, bindContent, resetContent] = useInput();
+import { updateNote } from "../../store/actions/noteAction";
+import { useHistory } from "react-router";
+
+const EditForm = () => {
+  const history = useHistory();
+  const note = useSelector((state) => state.note);
+  console.log(`EditarNota ${note}`);
+  const [title, bindTitle, resetTitle] = useInput(note.title);
+  const [content, bindContent, resetContent] = useInput(note.content);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ title, content });
-    dispatch(addNote({ title, content }));
+    dispatch(updateNote({ id: note.id, title, content }));
     resetTitle();
     resetContent();
+    history.push("/");
   };
 
   return (
@@ -36,12 +41,12 @@ const Form = () => {
             className="materialize-textarea"
             {...bindContent}
           ></textarea>
-          <label htmlFor="note_content">Note Content </label>
+          <label htmlFor="note_content" className="active">Note Content </label>
         </div>
-        <button className="btn green">Add</button>
+        <button className="btn green">Update</button>
       </form>
     </div>
   );
 };
 
-export default Form;
+export default EditForm;

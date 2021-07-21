@@ -54,3 +54,21 @@ export const toggleFavorite = (note) => {
       });
   };
 };
+export const updateNote = (note) => {
+  return (dispatch, getState, { getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("notes")
+      .doc(note.id)
+      .update({
+        title: note.title,
+        content: note.content,
+      })
+      .then(() => {
+        console.log("update note success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
